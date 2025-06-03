@@ -1,5 +1,5 @@
 
-void InitializeLog()
+static void InitializeLog()
 {
 	auto path = logger::log_directory();
 	if (!path)
@@ -72,8 +72,9 @@ extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_s
 	SKSE::Init(a_skse);
 	InitializeLog();
 
-	auto runtimeVer = a_skse->RuntimeVersion();
-	logger::info("Game version : {}", runtimeVer.string());
+	auto runtimeVer    = a_skse->RuntimeVersion();
+	auto runtimeVerStr = runtimeVer.string();
+	logger::info("Game version : {}", runtimeVerStr);
 
 	SKSE::GetMessagingInterface()->RegisterListener([](SKSE::MessagingInterface::Message* message) {
 		if (message->type == SKSE::MessagingInterface::kDataLoaded)

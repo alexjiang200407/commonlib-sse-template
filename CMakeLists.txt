@@ -5,7 +5,6 @@ option(BUILD_SKYRIMVR "Build for Skyrim VR" OFF)
 option(BUILD_SKYRIMAE "Build for Skyrim AE" OFF)
 option(STRIPPED_PDB "Strip private for PDB" OFF)
 
-
 macro(set_from_environment VARIABLE)
 	if (NOT DEFINED ${VARIABLE} AND DEFINED ENV{${VARIABLE}})
 		set(${VARIABLE} $ENV{${VARIABLE}})
@@ -15,9 +14,11 @@ endmacro()
 macro(find_commonlib_path)
 	if (CommonLibName AND NOT ${CommonLibName} STREQUAL "")
 		# Check extern
+		message(STATUS ${CommonLibPath})
 		find_path(CommonLibPath
 		include/REL/Relocation.h
 		PATHS extern/${CommonLibName})
+		message(STATUS ${CommonLibPath})
 		if (${CommonLibPath} STREQUAL "CommonLibPath-NOTFOUND")
 			#Check path
 			set_from_environment(${CommonLibName}Path)
