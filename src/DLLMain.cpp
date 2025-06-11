@@ -78,11 +78,7 @@ extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_s
 
 	SKSE::GetMessagingInterface()->RegisterListener([](SKSE::MessagingInterface::Message* message) {
 		if (message->type == SKSE::MessagingInterface::kDataLoaded)
-		{
-			std::ostringstream oss;
-			oss << Version::PROJECT << " has been loaded";
-			RE::ConsoleLog::GetSingleton()->Print(oss.str().c_str());
-		}
+			RE::ConsoleLog::GetSingleton()->Print("%s has been loaded", Version::PROJECT_C_STR);
 	});
 
 	return true;

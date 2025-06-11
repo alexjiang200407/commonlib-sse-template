@@ -14,6 +14,15 @@ CommonLibSSE Template for my mods. Using Po3's CommonLibSSE fork.
 * [vcpkg](https://github.com/microsoft/vcpkg).
 * [pdbcopy](https://support.microsoft.com/en-au/topic/pdbcopy-tool-1eb343a1-52e1-816c-451c-e569cef6b297) (optional).
 
+
+## Initialize
+
+Run the following command in project root directory.
+
+```bash
+git submodule update --init --recursive
+```
+
 ## Environment Variables
 * Set VCPKG_ROOT to installation directory of VCPKG
 * Set SkyrimModsPath to Skyrim mods directory (usually the mods directory for your mod manager).

@@ -4,6 +4,7 @@ set(AE_VERSION 1)
 option(BUILD_SKYRIMVR "Build for Skyrim VR" OFF)
 option(BUILD_SKYRIMAE "Build for Skyrim AE" OFF)
 option(STRIPPED_PDB "Strip private for PDB" OFF)
+option(COPY_BUILD "Copy build to mods folder" OFF)
 
 macro(set_from_environment VARIABLE)
 	if (NOT DEFINED ${VARIABLE} AND DEFINED ENV{${VARIABLE}})
@@ -180,7 +181,7 @@ if(STRIPPED_PDB)
 endif()
 
 
-if(DEFINED SkyrimModsPath)
+if(DEFINED SkyrimModsPath AND COPY_BUILD)
 	set(OUTPUT_DIR "${SkyrimModsPath}/${PROJECT_NAME}")
     set(DLL_FOLDER "${OUTPUT_DIR}/SKSE/Plugins")
 
@@ -195,4 +196,6 @@ if(DEFINED SkyrimModsPath)
 		COMMAND "${CMAKE_COMMAND}" -E copy_directory "${CMAKE_SOURCE_DIR}/Skyrim/Data" "${OUTPUT_DIR}"
         VERBATIM
     )
+else()
+	message(STATUS "Not copying build to mods folder")
 endif()
